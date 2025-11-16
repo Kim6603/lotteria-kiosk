@@ -1,0 +1,167 @@
+/* ====== 기존 전역 ====== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: white;
+  color: black;
+}
+
+#homeRoot {
+  height: 100vh;          /* 기존 값; 요청대로 기존은 유지 */
+  aspect-ratio: 9 / 16;
+  width: calc(100vh * 9 / 16);
+  max-width: 100vw;
+  background-color: #fff;
+  border-radius: 1vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#category { flex: 0.5; background-color: antiquewhite; padding: 0; margin: 0; }
+#mainBody { flex: 6; overflow-y: auto; }
+
+#shop { height: 24%; display: flex; flex-direction: column; }
+#bottom { flex: 0.7; background-color: #EDEDED; display: flex; }
+
+#headerContainer { flex: 0.5; background-color: white; display: flex; justify-items: center; justify-content: center; }
+#logoImg { width: 40%; height: auto; cursor: pointer; }
+
+#categoryContainer {
+  width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid black;
+}
+
+.categoryButton {
+  cursor: pointer; font-size: 100%; font-weight: 800; border: 0; background-color: inherit;
+  width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;
+}
+.categoryButton.active { background-color: #E60012; color: white; font-weight: 600; border: 1px solid #E60012; }
+
+#menuBox { display: grid; grid-template-columns: repeat(2, 1fr); }
+.menuCard { display: flex; text-align: left; border: none; cursor: pointer; margin-bottom: 5%; margin-top: 5%; font-size: 100%; }
+.menuImg { width: 35%; height: auto; margin-right: 2%; }
+.menuCardDetail { display: flex; flex-direction: column; }
+.menuName { font-weight: bold; }
+.menuPrice { color: #E60012; font-weight: bold; font-size: 90%; }
+
+#shopHeader {
+  width: 100%; height: 100%; display: flex; background-color: #EDEDED; align-items: center;
+  height: 20%; font-size: 120%; font-weight: bold; justify-content: center; justify-items: center;
+}
+
+.countNum { font-size: 130%; font-weight: bold; }
+.shopPrice { color: red; width: 75%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+#shopBody { overflow-y: auto; flex: 1 1 auto; }
+.cartCard { width: 100%; display: flex; height: 20%; font-weight: bold; justify-content: center; justify-items: center; align-items: center; }
+.cartItemDelete { cursor: pointer; }
+.cartCount { display: flex; justify-content: center; align-items: center; width: 75%; height: 100%; }
+.cartCountBt {
+  width: 13%; height: 60%; border: 1px solid #cfcfcf; border-radius: 50%; background-color: #f8f8f8;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 5%; margin-right: 5%; font-size: 120%;
+}
+.cartCountNum { font-size: 120%; }
+
+#shopCount { width: 75%; height: 100%; display: flex; justify-content: center; align-items: center; }
+.shopFont { width: 150%; height: 100%; display: flex; justify-content: center; align-items: center; }
+.nanoPrice { width: 80%; display: flex; align-items: center; justify-content: right; }
+#nanoPriceBox { width: 75%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+/* ====== 하단 버튼 영역 ====== */
+#bottomContainer {
+  width: 100%;
+  height: 100%;         /* ★ 추가: 자식의 % 높이가 0으로 붕 뜨는 문제 해결 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  gap: 2%;
+}
+
+.bottomBt {
+  display: flex; align-items: center; justify-content: center;
+  width: 35%; height: 75%; cursor: pointer; font-weight: bold; font-size: 120%; border-radius: 5px;
+}
+.leftBt { background-color: white; }
+.centerBt { background-color: #66CCFF; }
+.rightBt { background-color: #F5C518; }
+
+.centerBt.active { background-color: #007bff; color: white; }
+.centerBt.listening {
+  background-color: #dc3545; color: white; animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+/* ====== 메뉴 상세 ====== */
+#menuBody { flex: 9.3; width: 100%; display: flex; flex-direction: column; align-items: center; margin: 0; overflow-y: auto; }
+#menuImage { width: 95%; height: auto; }
+#menuDetailBox { width: 94%; display: flex; flex-direction: column; justify-content: left; }
+#menuDetailName { font-size: 140%; font-weight: bold; }
+#menuDetailPrice { font-size: 110%; font-weight: 600; }
+.blank { height: 10%; }
+#menuInfoBox { width: 93%; }
+.menuInfoRow { display: flex; justify-content: space-between; font-size: 75%; margin-bottom: 1%; }
+.menuInfo { font-weight: bold; margin-top: 0; margin-bottom: 1%; }
+.infoRight { font-weight: bold; }
+.allergy { font-size: 75%; }
+#menuNote { margin: 0; padding: 0; font-size: 65%; margin-left: 3%; }
+.blankSamll { height: 3%; }
+#allergyBt {
+  border: 1px solid black; color: black; border-radius: 30px; font-size: 75%;
+  margin-top: 2%; padding: 1% 2% 1% 3%; background-color: white; cursor: pointer; text-decoration: none; display: inline-block;
+}
+#menuBottom {
+  flex: 0.7; border-top: 1px solid black; padding-left: 3%; padding-right: 3%;
+  display: flex; justify-content: space-between; align-items: center;
+}
+#countBox {
+  width: 21%; height: 40%; border: 1px solid darkgray; border-radius: 10px;
+  display: flex; align-items: center; padding-top: 1.7%; padding-bottom: 1.7%;
+}
+.counterBtn { width: 33.33%; margin: 0; padding: 0; background-color: inherit; font-weight: 1000; }
+.counterValue { width: 33.34%; margin: 0; padding: 0; text-align: center; font-weight: bold; font-size: 150%; }
+#priceBt {
+  width: 75%; border: 1px solid #E60012; height: 65%; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; background-color: #E60012; color: white; font-weight: bold; cursor: pointer; font-size: 110%;
+}
+#backDiv { position: relative; width: 100%; }
+#backImg { width: 5%; height: auto; cursor: pointer; z-index: 1000; position: absolute; top: 1vw; left: 0.5vw; }
+
+/* ====== 결제/알림 모달(신규: %만 사용) ====== */
+#paymentModalOverlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center; z-index: 9999;
+}
+#paymentModalBox {
+  width: 60%; height: 40%; background-color: white; border-radius: 2%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5%;
+  text-align: center; font-family: 'Noto Sans KR', sans-serif; animation: fadeIn 0.3s ease-in-out;
+}
+#paymentModalBox h2 { font-size: 180%; margin: 0; color: #E60012; }
+#paymentModalBox p { margin: 0; }
+#paymentModalBox .orderNumber { font-size: 120%; font-weight: bold; }
+#paymentModalBox .note { font-size: 90%; color: gray; margin-top: 1%; }
+#paymentModalConfirm {
+  width: 40%; height: 20%; background-color: #E60012; color: white; font-size: 110%; font-weight: bold;
+  border: none; border-radius: 3%; cursor: pointer;
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+.tempModal {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8); color: white; padding: 2% 4%; border-radius: 2%;
+  z-index: 9999; font-size: 120%; animation: fadeIn 0.2s ease-in-out;
+}

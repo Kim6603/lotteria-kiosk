@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kim.kiosk.mapper.MenuMapper">
+
+    <select id="findRecommendedMenu" parameterType="map" resultType="kim.kiosk.domain.Menu">
+        SELECT *,
+        (
+        CASE WHEN 종류 = #{category} THEN 10 ELSE 0 END +
+        CASE WHEN 설명 LIKE CONCAT('%', #{keyword}, '%') THEN 5 ELSE 0 END +
+        CASE WHEN 추천 = 'O' THEN 3 ELSE 0 END
+        ) AS score
+        FROM menu
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND 설명 LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category != null and category != ''">
+                AND 종류 = #{category}
+            </if>
+            <if test="maxPrice != null">
+                AND 가격 &lt;= #{maxPrice}
+            </if>
+            <if test="maxCalorie != null">
+                AND 열량 &lt;= #{maxCalorie}
+            </if>
+            <if test="minProtein != null">
+                AND 단백질 &gt;= #{minProtein}
+            </if>
+            <if test="maxSodium != null">
+                AND 나트륨 &lt;= #{maxSodium}
+            </if>
+            <if test="excludeAllergy != null and excludeAllergy != ''">
+                AND 알러지정보 NOT LIKE CONCAT('%', #{excludeAllergy}, '%')
+            </if>
+        </where>
+        ORDER BY score DESC, RAND()
+        LIMIT 5
+    </select>
+
+    <select id="searchMenus" parameterType="kim.kiosk.dto.SearchParams" resultType="kim.kiosk.dto.MenuDto">
+        SELECT * FROM menu
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (이름 LIKE CONCAT('%', #{keyword}, '%') OR 설명 LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="getMenusByIds" resultType="kim.kiosk.dto.MenuDto">
+        SELECT * FROM menu
+        WHERE id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findAllMenus" resultType="kim.kiosk.domain.Menu">
+        SELECT * FROM menu;
+    </select>
+
+</mapper>
